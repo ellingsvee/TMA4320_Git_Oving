@@ -4,13 +4,13 @@ Denne øvingen er ment som en intro til Git og GitHub. Du lærer grunnleggende k
 
 ## Del 1: Sette opp repoet lokalt
 
-**Fork dette repoet**
+### Fork dette repoet
 1. Pass på at du er logget inn på GitHub
 2. Trykk på "Fork"-knappen øverst til høyre på GitHub
 3. Du får nå din egen kopi av repoet
 4. Velg om du vil gjøre repoet privat eller offentlig (valgfritt). Dersom det er et offentlig repo, kan alle se koden din.
 
-**Naviger til passende sted maskinen din**
+### Naviger til passende sted maskinen din
 Åpne terminalen og gå til mappen der du vil ha repoet. Bruk kommandoene
 ```bash
 ls                      # List filer og mapper
@@ -18,39 +18,44 @@ mkdir ny_mappe          # Lag en ny mappe (valgfritt)
 cd /sti/til/mappen      # Naviger til ønsket mappe
 ```
 
-**Klon repoet til maskinen din**
+### Klon repoet til maskinen din
 ```bash
 git clone https://github.com/DITT-BRUKERNAVN/TMA4320_Git_Oving.git  # Bytt ut DITT-BRUKERNAVN med ditt GitHub-brukernavn
 cd TMA4320_Git_Oving                                                # Beveg deg inn i mappen
 ```
 
-**Sjekk statusen**
+### Sjekk statusen
 ```bash
 git status 
 ```
 Dette viser hvilken branch du er på og om det er noen endringer.
 
+### Generer en ssh nøkkel for å kommunisere mellom Git og Github (OBS: Kan være krevende):
+
+[Følg denne guiden for å lage en ssh nøkkel og koble den til GitHub](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+
+
 ## Del 2: Gjør din første endring
 
-**Oppgave:** Legg til navnet ditt i `studenter.txt`
+### Oppgave: Legg til navnet ditt i `studenter.txt`
 
 1. Åpne filen `studenter.txt` i en teksteditor
 2. Legg til navnet ditt på en ny linje
 3. Lagre filen
 
-**Sjekk hva som er endret**
+### Sjekk hva som er endret
 ```bash
 git status
 git diff
 ```
 
-**Legg til endringen og commit**
+### Legg til endringen og commit
 ```bash
 git add studenter.txt
 git commit -m "La til mitt navn i studentlisten"
 ```
 
-**Push til GitHub**
+### Push til GitHub
 ```bash
 git push
 ```
@@ -61,13 +66,13 @@ Gå til GitHub og sjekk at endringen dukket opp!
 
 Branches lar deg jobbe på nye features uten å ødelegge hovedkoden.
 
-**Lag en ny branch**
+### Lag en ny branch
 ```bash
 git branch min-feature      # Lag en ny branch kalt "min-feature"
 git switch min-feature      # Bytt fra "main" branch til den nye branchen "min-feature"
 ```
 
-**Oppgave:** Gjør noen endringer i `kalkulator.py`
+### Oppgave: Gjør noen endringer i `kalkulator.py`
 
 For eksempel, legg til en ny funksjon:
 ```python
@@ -75,13 +80,13 @@ def multipliser(a, b):
     return a * b
 ```
 
-**Sjekk hva som er endret**
+### Sjekk hva som er endret
 ```bash
 git status 
 git diff
 ```
 
-**Commit endringene**
+### Commit endringene
 ```bash
 git add kalkulator.py
 git commit -m "La til multiplikasjonsfunksjon"
@@ -90,14 +95,14 @@ git push -u origin min-feature
 
 ## Del 4: Merge og pull requests
 
-**På GitHub:**
+### På GitHub:
 1. Gå til repoet ditt på GitHub
 2. Du vil se en notifikasjon om den nye branchen
 3. Trykk "Compare & pull request"
 4. Skriv en kort beskrivelse og trykk "Create pull request"
 5. Merge pull requesten
 
-**Tilbake i terminalen:**
+### Tilbake i terminalen:
 ```bash
 git switch main     # Bytt tilbake til main-branchen
 git pull            # Hent de nyeste endringene fra GitHub
@@ -109,7 +114,7 @@ Nå er endringene dine i main-branchen!
 
 Merge conflicts oppstår når to branches endrer samme linje i en fil. Vi skal nå lage en konflikt lokalt på din egen PC for å lære hvordan man håndterer dem.
 
-**Lag en merge conflict:**
+### Lag en merge conflict:
 
 1. Sjekk at du er på main-branchen:
 ```bash
@@ -163,7 +168,7 @@ git merge feature-2
 
 Du får nå en feilmelding om merge conflict!
 
-**Løs konflikten:**
+### Løs konflikten:
 
 7. Åpne `studenter.txt`. Git har markert konflikten slik:
 ```
@@ -191,7 +196,7 @@ Gratulerer! Du har nå håndtert din første merge conflict.
 
 Noen filer skal ikke være med i Git, for eksempel store datafiler, midlertidige filer, eller autogenererte filer. Filen `.gitignore` forteller Git hvilke filer og mapper som skal ignoreres.
 
-**Oppgave:** Lag en `.gitignore` fil
+### Oppgave: Lag en `.gitignore` fil
 
 1. Lag noen testfiler:
 ```bash
@@ -229,7 +234,7 @@ git status
 ```
 Nå vil du se at `rapport.pdf` og `notater.pdf` ikke lenger vises som untracked filer!
 
-**Nyttige .gitignore patterns:**
+### Nyttige .gitignore patterns:
 - `*.pdf` - ignorerer alle PDF-filer
 - `__pycache__/` - ignorerer Python cache-mappen
 - `.DS_Store` - ignorerer macOS systemfiler
@@ -240,7 +245,7 @@ git add .gitignore
 git commit -m "La til .gitignore"
 ```
 
-**Tips:** GitHub har en samling av nyttige .gitignore-templates for ulike språk: [github.com/github/gitignore](https://github.com/github/gitignore)
+**Tips:** GitHub har en samling av nyttige .gitignore-templates for ulike språk: [github.com/github/gitignore](https://github.com/github/gitignore) 
 
 **Obs:** .gitignore påvirker kun filer som ikke allerede er tracket av Git. Hvis du allerede har commitet en fil, må du fjerne den fra Git-historikken for at .gitignore skal fungere på den filen.
 
@@ -267,6 +272,7 @@ git merge <branch-navn>         # Merge en branch inn i den nåværende branchen
 git push                        # Send endringer til GitHub
 git pull                        # Hent nyeste endringer fra GitHub
 ```
+**Merk:** Dette er bare et utvalg av de mest brukte kommandoene. Git har mange flere funksjoner og kommandoer som kan være nyttige i forskjellige situasjoner.
 
 ## Tips
 
