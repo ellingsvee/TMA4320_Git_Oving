@@ -21,3 +21,6 @@ if __name__ == "__main__":
     print("5 + 3 =", addere(5, 3))
     print("5 - 3 =", subtrahere(5, 3))
     print("6 / 2 =", dividere(6, 2))
+
+def multipliser(a, b):
+    return a * b
