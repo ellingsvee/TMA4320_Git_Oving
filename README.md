@@ -2,20 +2,34 @@
 
 Denne øvingen er ment som en intro til Git og GitHub. Du lærer grunnleggende kommandoer ved å gjøre enkle endringer i dette repoet.
 
+## Verifiser at Git er installert
+Åpne terminalen og kjør:
+```bash
+git --version
+```
+Dersom Git er installert, vil du se noe som `git version 2.x.x`. 
+
 ## Del 1: Sette opp repoet lokalt
 
 ### Fork dette repoet
 1. Pass på at du er logget inn på GitHub
-2. Trykk på "Fork"-knappen øverst til høyre på GitHub
-3. Du får nå din egen kopi av repoet
-4. Velg om du vil gjøre repoet privat eller offentlig (valgfritt). Dersom det er et offentlig repo, kan alle se koden din.
+2. Trykk på "Fork"-knappen øverst til høyre på denne GitHub-siden (se bildet under).
+3. Velg "Copy `main` branch only".
+4. Du får nå din egen kopi av repoet.
+5. Velg om du vil gjøre repoet privat eller offentlig (valgfritt). Dersom det er et offentlig repo, kan alle se koden din.
 
-### Naviger til passende sted maskinen din
-Åpne terminalen og gå til mappen der du vil ha repoet. Bruk kommandoene
+<img src="figures/git_fork.png" width="100%" height="100%">
+
+### Naviger til passende sted på maskinen din
+Åpne terminalen og gå til mappen der du vil ha repoet. Bruk kommandoene under for å se hvor du befinner deg
 ```bash
-ls                      # List filer og mapper
-mkdir ny_mappe          # Lag en ny mappe (valgfritt)
-cd /sti/til/mappen      # Naviger til ønsket mappe
+pwd                     # Sjekk hvilken mappe du nå er i
+ls                      # List filer og mapper i den nåværende mappen
+```
+og bruk `cd` for å navigere til ønsket mappe, for eksempel:
+```bash
+cd Documents/Skole     # Gå til mappen "Skole" inne i "Documents"
+cd ..                  # Gå ett nivå opp i mappestrukturen (dette tar deg til "Documents")
 ```
 
 ### Klon repoet til maskinen din
@@ -28,11 +42,13 @@ cd TMA4320_Git_Oving                                                # Beveg deg 
 ```bash
 git status 
 ```
-Dette viser hvilken branch du er på og om det er noen endringer.
+Dette viser hvilken branch du er på og om det er noen endringer. Ettersom du nettopp har klonet repoet, skal det ikke være noen endringer, og gir dermed en output
+```
+On branch main
+Your branch is up to date with 'origin/main'.
 
-### Generer en ssh nøkkel for å kommunisere mellom Git og Github (OBS: Kan være krevende):
-
-[Følg denne guiden for å lage en ssh nøkkel og koble den til GitHub](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+nothing to commit, working tree clean
+```
 
 
 ## Del 2: Gjør din første endring
@@ -51,16 +67,20 @@ git diff
 
 ### Legg til endringen og commit
 ```bash
+# Legg til filen til staging area
 git add studenter.txt
+
+# Commit alle endringer som er i staging area
+# `-m` flagget lar deg legge til en commit-melding direkte i kommandoen
 git commit -m "La til mitt navn i studentlisten"
 ```
 
 ### Push til GitHub
+For å sende endringen til GitHub, bruk
 ```bash
-git push
+git push -u origin main
 ```
-
-Gå til GitHub og sjekk at endringen dukket opp!
+Gå til GitHub og sjekk at endringen dukket opp i !
 
 ## Del 3: Jobbe med branches
 
@@ -69,16 +89,17 @@ Branches lar deg jobbe på nye features uten å ødelegge hovedkoden.
 ### Lag en ny branch
 ```bash
 git branch min-feature      # Lag en ny branch kalt "min-feature"
-git switch min-feature      # Bytt fra "main" branch til den nye branchen "min-feature"
+git switch min-feature      # Bytt fra "main" branch til den nye branchen
 ```
 
-### Oppgave: Gjør noen endringer i `kalkulator.py`
+### Oppgave: Bruk din teksteditor og gjør noen endringer i `kalkulator.py`
 
 For eksempel, legg til en ny funksjon:
 ```python
 def multipliser(a, b):
     return a * b
 ```
+
 
 ### Sjekk hva som er endret
 ```bash
@@ -90,164 +111,124 @@ git diff
 ```bash
 git add kalkulator.py
 git commit -m "La til multiplikasjonsfunksjon"
-git push -u origin min-feature
 ```
 
-## Del 4: Merge og pull requests
+### Merge branchen tilbake til main (lokalt)
+Nå som du har gjort endringer på `min-feature`-branchen, kan du merge den tilbake til `main`:
+```bash
+git switch main                 # Bytt tilbake til main-branchen
+git merge min-feature           # Merge inn endringene fra min-feature
+git push                        # Push endringene til GitHub
+```
+Du har nå laget en branch, gjort endringer, og merget dem tilbake til main. Bruk `git log` for å se commit-historikken, og press `q` for å gå ut av log-visningen`
 
-### På GitHub:
-1. Gå til repoet ditt på GitHub
-2. Du vil se en notifikasjon om den nye branchen
-3. Trykk "Compare & pull request"
-4. Skriv en kort beskrivelse og trykk "Create pull request"
-5. Merge pull requesten
+### Viktig!: Merge-conflicts
+
+Merge conflicts oppstår når to branches endrer samme linje i en fil. Når vi skal merge disse branchene vil Git ikke vite hvilken endring som skal beholdes, og du må løse konflikten manuelt. Dette er en vanlig situasjon når flere personer jobber på samme prosjekt, og kan virke skremmende i starten. 
+
+Jeg anbefaler å bruke 5 minutter etter forelesning på å se denne videoen. Deretter kan du prøve å lage en merge-conflict self, og håndtere den slik som forklart.
+
+https://www.youtube.com/watch?v=DloR0BOGNU0
+
+## Del 4: Push branches og Pull Requests på GitHub
+
+Nå som du har lært å jobbe med branches lokalt, skal vi se hvordan du bruke egne branches på GitHub. Dette kan være nytting når dere skal samarbeide i prosjektet.
+
+### Push en branch til GitHub
+La oss først lage en ny branch med noen endringer som vi kan pushe:
+```bash
+git branch github-test          # Lag en ny branch
+git switch github-test          # Bytt til den nye branchen
+```
+
+Gjør en liten endring i `kalkulator.py` (f.eks. legg til en kommentar eller en ny funksjon), og commit:
+```bash
+git add kalkulator.py
+git commit -m "Test av GitHub branch"
+```
+
+Push branchen til GitHub:
+```bash
+git push -u origin github-test
+```
+Flagget `-u` (eller `--set-upstream`) kobler din lokale branch til en remote branch på GitHub, slik at fremtidige `git push` og `git pull` vet hvor de skal sende/hente data. `origin` er standardnavnet for remote-repoet du klonet fra (dvs. ditt forkede repo på GitHub), og `github-test` er navnet på branchen du pusher.
+
+### Lag en Pull Request til din egen main-branch
+En Pull Request (PR) er en forespørsel om å merge endringer fra én branch til en annen. På GitHub:
+
+1. Gå til ditt forkede repo på GitHub
+2. Du vil se en notifikasjon: "github-test had recent pushes" med en knapp "Compare & pull request"
+3. Trykk på "Compare & pull request"
+4. Sjekk at:
+   - **base repository** er ditt eget repo (ikke originalen!)
+   - **base** er `main`
+   - **compare** er `github-test`
+5. Skriv en kort beskrivelse av endringene
+6. Trykk "Create pull request"
+7. Trykk "Merge pull request" og deretter "Confirm merge"
+
+Du har nå merget en branch via en Pull Request i ditt eget repo. På denne måten kan flere gruppemedlemmer jobbe på egne branches og sende Pull Requests til main-branchen når de er ferdige.
 
 ### Tilbake i terminalen:
 ```bash
 git switch main     # Bytt tilbake til main-branchen
-git pull            # Hent de nyeste endringene fra GitHub
+git pull            # Hent endringene fra GitHub (inkludert mergen du nettopp gjorde)
 ```
 
-Nå er endringene dine i main-branchen!
+### Lag en Pull Request til det originale repoet
+Dersom du har gjort forbedringer som du vil dele med det originale repoet (det du forket fra), kan du lage en Pull Request dit:
 
-## Del 5: Håndtere merge conflicts (dette er noe mange sliter med)
+1. Gå til det **originale** repoet på GitHub (ikke din fork)
+2. Trykk på "Pull requests" i menyen
+3. Trykk "New pull request"
+4. Trykk på "compare across forks"
+5. Velg:
+   - **base repository**: det originale repoet
+   - **base**: `main`
+   - **head repository**: ditt forkede repo
+   - **compare**: branchen med dine endringer
+6. Trykk "Create pull request"
+7. Skriv en beskrivelse av hva du har endret og hvorfor
 
-Merge conflicts oppstår når to branches endrer samme linje i en fil. Vi skal nå lage en konflikt lokalt på din egen PC for å lære hvordan man håndterer dem.
+Nå må eieren av det originale repoet godkjenne og merge din Pull Request. Dette er slik open source-prosjekter fungerer!
 
-### Lag en merge conflict:
-
-1. Sjekk at du er på main-branchen:
-```bash
-git switch main
-```
-
-2. Lag to nye branches fra main:
-```bash
-git branch feature-1
-git branch feature-2
-```
-
-3. Gjør en endring på feature-1:
-```bash
-git switch feature-1
-```
-Åpne `studenter.txt` og endre den **første linjen** til:
-```
-Dette er endring fra feature-1
-```
-Commit endringen:
-```bash
-git add studenter.txt
-git commit -m "Endring fra feature-1"
-```
-
-4. Bytt til feature-2 og gjør en **annen** endring på **samme linje**:
-```bash
-git switch feature-2
-```
-Åpne `studenter.txt` og endre den **første linjen** til:
-```
-Dette er endring fra feature-2
-```
-Commit endringen:
-```bash
-git add studenter.txt
-git commit -m "Endring fra feature-2"
-```
-
-5. Merge feature-1 inn i main (dette går fint):
-```bash
-git switch main
-git merge feature-1
-```
-
-6. Nå prøver vi å merge feature-2 (dette gir konflikt!):
-```bash
-git merge feature-2
-```
-
-Du får nå en feilmelding om merge conflict!
-
-### Løs konflikten:
-
-7. Åpne `studenter.txt`. Git har markert konflikten slik:
-```
-<<<<<<< HEAD
-Dette er endring fra feature-1
-=======
-Dette er endring fra feature-2
->>>>>>> feature-2
-```
-
-8. Rediger filen manuelt. Fjern `<<<<<<<`, `=======`, og `>>>>>>>` markeringene, og behold det du vil ha. For eksempel:
-```
-Dette er endring fra feature-1 og feature-2
-```
-
-9. Fullfør merge:
-```bash
-git add studenter.txt
-git commit -m "Løst merge conflict mellom feature-1 og feature-2"
-```
-
-Gratulerer! Du har nå håndtert din første merge conflict.
-
-## Del 6: Bruk av .gitignore
+## Del 5: Bruk av .gitignore
 
 Noen filer skal ikke være med i Git, for eksempel store datafiler, midlertidige filer, eller autogenererte filer. Filen `.gitignore` forteller Git hvilke filer og mapper som skal ignoreres.
 
-### Oppgave: Lag en `.gitignore` fil
-
-1. Lag noen testfiler:
-```bash
-touch rapport.pdf       # touch kommandoen lager en tom fil med det valgte filnavnet
-touch data.csv
-touch notater.pdf
-```
+1. Last ned [dette bildet](https://backends.it.ntnu.no/user-profile-service/rest/files/37db5b57-f824-3b92-bfb3-c4f6e4d543ab) (https://backends.it.ntnu.no/user-profile-service/rest/files/37db5b57-f824-3b92-bfb3-c4f6e4d543ab) til repo-mappen, og lagre det som `brynjulf.png`.
 
 2. Sjekk status:
 ```bash
 git status
 ```
-Du vil se at alle de nye filene er "untracked".
+Du vil se at den nye fila `brynjulf.png` er "untracked". Dette betyr at Git legger merke til at fila er lagt til, men den er ikke med i noen commit enda. Dersom vi vet at vi aldri vil ha denne fila med i Git, kan vi bruke `.gitignore` for å fortelle Git å ignorere den.
 
-3. Lag en `.gitignore` fil i rotmappen av repoet:
+3. Åpne `.gitignore` fila i en teksteditor og legg til:
 ```bash
-touch .gitignore
-```
-
-4. Åpne `.gitignore` i en teksteditor og legg til:
-```bash
-# Ignorer alle PDF-filer. På "dataspråk" betyr "*" alle filer. Ved å legge ved ".pdf" betyr det alle filer som slutter på .pdf
-*.pdf
-
-# Ignorer spesifikke filer
-data.csv
-
-# Ignorer hele mapper
-temp/
+brynjulf.png
 ```
 
 5. Sjekk status igjen:
 ```bash
 git status
 ```
-Nå vil du se at `rapport.pdf` og `notater.pdf` ikke lenger vises som untracked filer!
+Nå vil du se at `brynjulf.png` ikke lenger vises som en untracked fil!
 
 ### Nyttige .gitignore patterns:
 - `*.pdf` - ignorerer alle PDF-filer
-- `__pycache__/` - ignorerer Python cache-mappen
-- `.DS_Store` - ignorerer macOS systemfiler
+- `mappenavn/` - ignorerer hele mappen "mappenavn"
+- `temp*` - ignorerer alle filer som starter med "temp"
 
 6. Commit .gitignore filen:
 ```bash
 git add .gitignore
-git commit -m "La til .gitignore"
+git commit -m "Oppdaterte .gitignore"
 ```
 
 **Tips:** GitHub har en samling av nyttige .gitignore-templates for ulike språk: [github.com/github/gitignore](https://github.com/github/gitignore) 
 
-**Obs:** .gitignore påvirker kun filer som ikke allerede er tracket av Git. Hvis du allerede har commitet en fil, må du fjerne den fra Git-historikken for at .gitignore skal fungere på den filen.
+**Obs:** `.gitignore` påvirker kun filer som ikke allerede er tracket av Git. Hvis du allerede har commitet en fil, må du fjerne den fra Git-historikken for at `.gitignore` skal fungere på den filen.
 
 ## Oppsummering av brukte kommandoer
 
@@ -283,28 +264,33 @@ git pull                        # Hent nyeste endringer fra GitHub
 
 Andre nyttige ressurser:
 - [Git Cheat Sheet](https://education.github.com/git-cheat-sheet-education.pdf)
-- [Pro Git Book](ps://git-scm.com/learn)
+- [Pro Git Book](https://git-scm.com/book)
 - [Philomatics Youtube kanal](https://www.youtube.com/@philomatics)
-
 
 ## Bonus: GUIs for Git
 Mange foretrekker å bruke grafiske brukergrensesnitt (GUIs) for å håndtere Git i stedet for kommandolinjen. Dette kan gjøre det enklere å visualisere endringer og raskere å utføre visse operasjoner. Her er noen populære alternativer.
 
 ### LazyGit (min personlige favoritt)
-LazyGit er en terminal-basert GUI. Personlig bruker jeg LazyGit for 90% av mine Git-operasjoner, og kun kommandolinen for avanserte ting. Koden er åpen kildekode og programmet kan lastes ned fra [LazyGit GitHub repository]("https://github.com/jesseduffield/lazygit").
+LazyGit er en terminal-basert GUI. Personlig bruker jeg LazyGit for 90% av mine Git-operasjoner, og kun kommandolinen for avanserte ting. Koden er åpen kildekode og programmet kan lastes ned fra [LazyGit GitHub repository](https://github.com/jesseduffield/lazygit).
 
 <img src="figures/lazygit.png" width="50%" height="50%">
 
 ### GitHub Desktop
-GitHub Desktop er et brukervennlig GUI for Git som er utviklet av Microsoft. Det kan lastes ned gratis fra [Download GitHub Desktop]("https://desktop.github.com/download/").
+GitHub Desktop er et brukervennlig GUI for Git som er utviklet av Microsoft. Det kan lastes ned gratis fra [GitHub Desktop](https://desktop.github.com/download/).
 
 <img src="figures/github_desktop.webp" width="50%" height="50%">
 
 ### Source Control i VSCode
-VSCode har innebygd støtte for Git gjennom Source Control-panelet. Finn mer informasion på [Source Control in VS Code]("https://code.visualstudio.com/docs/sourcecontrol/overview").
+VSCode har innebygd støtte for Git gjennom Source Control-panelet. Finn mer informasjon på [Source Control in VS Code](https://code.visualstudio.com/docs/sourcecontrol/overview).
 
 <img src="figures/vscode_source_control.png" width="50%" height="50%">
 
 
+## Bonus 2: SSH-nøkkel for GitHub 
 
-### Lykke til! Det kan kreve litt øvelse, men Git er et utrolig kraftig verktøy som er verdt å mestre.
+I denne øvelsen bruker vi HTTPS for å kommunisere med GitHub, noe som fungerer fint. Dersom du vil slippe å skrive brukernavn og passord hver gang du pusher, kan du sette opp en SSH-nøkkel.
+
+[Følg denne guiden for å lage en SSH-nøkkel og koble den til GitHub](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+
+**Merk:** Dette kan være litt krevende å sette opp, personlig spør jeg som regel AI om hjelp til dette.
+
