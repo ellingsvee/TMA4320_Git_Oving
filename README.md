@@ -80,7 +80,7 @@ git commit -m "La til mitt navn i studentlisten"
 For å sende endringen til GitHub, gå til GitHub Desktop og trykk på "Push origin" knappen øverst.
 
 
-<img src="figures/gh_desktop_push_origin.png" width="100%" height="100%">
+<img src="figures/gh_desktop_push_origin_new.png" width="100%" height="100%">
 
 Gå til GitHub og sjekk at endringen dukket opp i !
 
