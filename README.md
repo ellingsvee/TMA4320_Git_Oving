@@ -176,7 +176,7 @@ Deretter velger du "Fetch origin" i GitHub Desktop for å hente de nyeste endrin
 
 Noen filer skal ikke være med i Git, for eksempel store datafiler, midlertidige filer, eller autogenererte filer. Filen `.gitignore` forteller Git hvilke filer og mapper som skal ignoreres.
 
-1. Last ned [dette bildet](https://backends.it.ntnu.no/user-profile-service/rest/files/37db5b57-f824-3b92-bfb3-c4f6e4d543ab) (https://backends.it.ntnu.no/user-profile-service/rest/files/37db5b57-f824-3b92-bfb3-c4f6e4d543ab) til repo-mappen, og lagre det som `brynjulf.jpg`.
+1. Last ned [dette bildet](https://backends.it.ntnu.no/user-profile-service/rest/files/37db5b57-f824-3b92-bfb3-c4f6e4d543ab) til repo-mappen, og lagre det som `brynjulf.jpg`.
 
 2. Sjekk status:
 ```bash
@@ -262,7 +262,7 @@ git pull                # Hent og slå sammen endringer fra GitHub
 Ut over GitHub Desktop finnes det flere andre GUI-verktøy for Git som kan være nyttige. To populære alternativer er:
 
 ### LazyGit (min personlige favoritt)
-LazyGit er en terminal-basert GUI (en TUI!). Personlig bruker jeg LazyGit for 90% av mine Git-operasjoner, og kun kommandolinen for avanserte ting. Koden er åpen kildekode og programmet kan lastes ned fra https://github.com/jesseduffield/lazygit.
+LazyGit er en terminal-basert GUI (en TUI!). Personlig bruker jeg LazyGit for 90% av mine Git-operasjoner, og kun kommandolinen for avanserte ting. Koden er åpen kildekode og programmet kan lastes ned fra [LazyGit GitHub Repository](https://github.com/jesseduffield/lazygit).
 
 <img src="figures/lazygit.png" width="50%" height="50%">
 
