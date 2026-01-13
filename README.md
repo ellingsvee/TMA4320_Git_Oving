@@ -17,6 +17,10 @@ GitHub Desktop er et brukervennlig GUI for Git som er utviklet av Microsoft. Det
 
 
 ## Del 1: Sette opp et eget GitHub-repo, og laste det ned til din maskin
+### Stjerne dette repoet
+Dette er ikke et krav, men det er alltid hyggelig å få en stjerne på repoet dersom du synes det er nyttig! Trykk på "Star" knappen øverst til høyre på denne siden :-))
+
+
 ### Bruk dette repoet som template for ditt eget repo
 For prosjektene skal alle gruppene ha sitt eget privat GitHub-repo for å jobbe videre med koden i det originale repoet. For å lage ditt eget repo basert på dette, trykk på "Use this template" knappen øverst til høyre på denne siden og velg "Create a new repository".
 
@@ -171,7 +175,8 @@ Inne på GitHub kan du lage en Pull Request (PR) for å merge endringene fra `gi
 Deretter trykker du på "Merge pull request" for å fullføre mergen.
 <img src="figures/gh_merge_pr.png" width="100%" height="100%">
 
-Du har nå merget en branch via en Pull Request i ditt eget repo. På denne måten kan flere gruppemedlemmer jobbe på egne branches og sende Pull Requests til main-branchen når de er ferdige.
+Du har nå merget en branch via en Pull Request i ditt eget repo. På denne måten kan flere gruppemedlemmer jobbe på egne branches og sende Pull Requests til main-branchen når de er ferdige. Tenker du deg om hvordan dette kan brukes i prosjektet deres?
+
 
 ### Hent endringene fra GitHub til din lokale main-branch
 For å hente de nyeste endringene fra GitHub til din lokale main-branch, bytt først til main-branchen:
