@@ -15,19 +15,18 @@ GitHub Desktop er et brukervennlig GUI for Git som er utviklet av Microsoft. Det
 
 <img src="figures/github_desktop.webp" width="70%" height="70%">
 
-## Del 1: Sette opp repoet lokalt
 
-### Fork dette repoet
-1. Pass på at du er logget inn på GitHub
-2. Trykk på "Fork"-knappen øverst til høyre på denne GitHub-siden (se bildet under).
-3. Velg "Copy `main` branch only".
-4. Du får nå din egen kopi av repoet.
-5. Velg om du vil gjøre repoet privat eller offentlig (valgfritt). Dersom det er et offentlig repo, kan alle se koden din.
+## Del 1: Sette opp et eget GitHub-repo, og laste det ned til din maskin
+### Bruk dette repoet som template for ditt eget repo
+For prosjektene skal alle gruppene ha sitt eget privat GitHub-repo for å jobbe videre med koden i det originale repoet. For å lage ditt eget repo basert på dette, trykk på "Use this template" knappen øverst til høyre på denne siden og velg "Create a new repository".
 
-<img src="figures/git_fork.png" width="100%" height="100%">
+<img src="figures/use_template.png" width="100%" height="100%">
+
+Deretter gir du repoet et navn (f.eks. `TMA4320_Oving_<Ditt_navn>`), velger "Private" og trykker på "Create repository from template".
+<img src="figures/create_new_repo.png" width="100%" height="100%">
 
 ### Klon repoet til maskinen din ved bruk av GitHub Desktop
-I det klonede repositoriet, velg "Code" og trykk på "Open with GitHub Desktop". Velg deretter hvor du vil lagre repoet lokalt på maskinen din, og trykk "Clone".
+I det nye repositoriet du har generert, velg "Code" og trykk på "Open with GitHub Desktop". Velg deretter hvor du vil lagre repoet lokalt på maskinen din, og trykk "Clone".
 
 <img src="figures/git_clone_to_desktop.png" width="100%" height="100%">
 
@@ -84,7 +83,7 @@ For å sende endringen til GitHub, gå til GitHub Desktop og trykk på "Push ori
 
 <img src="figures/gh_desktop_push_origin_new.png" width="100%" height="100%">
 
-Gå til GitHub og sjekk at endringen dukket opp i !
+Gå til GitHub og sjekk at endringen dukket opp i!
 
 ## Del 3: Jobbe med branches
 
@@ -117,13 +116,17 @@ git merge update-students               # Merge inn endringene fra update-studen
 ```
 Du har nå laget en branch, gjort endringer, og merget dem tilbake til main. Bruk `git log` for å se commit-historikken. Deretter pusher du endringene til GitHub via GitHub Desktop på samme måte som tidligere.
 
-### Viktig(!): Merge-conflicts
+### Viktig: Merge-conflicts
 
 Merge conflicts oppstår når to branches endrer samme linje i en fil. Når vi skal merge disse branchene vil Git ikke vite hvilken endring som skal beholdes, og du må løse konflikten manuelt. Dette er en vanlig situasjon når flere personer jobber på samme prosjekt, og kan virke skremmende i starten. 
 
-Jeg anbefaler å bruke 5 minutter etter forelesning på å se denne videoen. Deretter kan du prøve å lage en merge-conflict self, og håndtere den slik som forklart.
+Heldigvis er ikke dette så vanskelig som det ser ut som. Jeg anbefaler å bruke 5 minutter etter forelesning på å se denne videoen. Deretter kan du prøve å lage en merge-conflict self, og håndtere den slik som forklart. 
 
 https://www.youtube.com/watch?v=DloR0BOGNU0
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/DloR0BOGNU0/0.jpg)](https://www.youtube.com/watch?v=DloR0BOGNU0)
+
+
 
 ## Del 4: Push branches og Pull Requests på GitHub
 
@@ -161,7 +164,7 @@ Inne på GitHub vil du nå se den nye branchen under dropdown-menyen.
 <img src="figures/gh_branch.png" width="80%" height="80%">
 
 ### Lag en Pull Request til din egen main-branch
-Inne på GitHub kan du lage en Pull Request (PR) for å merge endringene fra `github-test` branchen til `main` branchen. Trykk på "Compare & pull request" i notifikasjonen som dukker opp. Du kan nå gjennomgå endringene og lage en PR.
+Inne på GitHub kan du lage en Pull Request (PR) for å merge endringene fra `github-test` branchen til `main` branchen. Mens du er inne i `main` branchen på GitHub, trykk på "Compare & pull request" i notifikasjonen som dukker opp. Du kan nå gjennomgå endringene og lage en PR.
 
 <img src="figures/gh_remote_merge.png" width="100%" height="100%">
 
@@ -175,21 +178,8 @@ For å hente de nyeste endringene fra GitHub til din lokale main-branch, bytt f�
 ```bash
 git switch main
 ```
-Deretter velger du "Fetch origin" i GitHub Desktop for å hente de nyeste endringene fra GitHub.
+Deretter velger du "Fetch origin" i GitHub Desktop for å hente de nyeste endringene fra GitHub. Sjekk at endringen du gjorde i `area.py` nå er med i din lokale `main`-branch.
 <img src="figures/fetch_origin.png" width="100%" height="100%">
-
-## Del 5: Pull request til originalrepoet
-
-På tilsvarende måte som du laget en Pull Request til ditt eget repo, kan du lage en Pull Request til originalrepoet (det du klonet fra). Inne på GitHub-siden til ditt forkede repo, trykk på "Contribute" og deretter "Open pull request".
-
-<img src="figures/open_pr.png" width="60%" height="60%">
-
-Dette er en forespørsel om å merge endringene dine inn i originalrepoet. Skriv en kort beskrivelse av endringene du har gjort, og trykk på "Create pull request".
-
-
-<img src="figures/open_pr_2.png" width="80%" height="80%">
-
-Forespørselen vil nå bli vurdert av eieren av originalrepoet (i dette tilfellet meg). Dersom endringene dine er gode, vil de bli merget inn i originalrepoet.
 
 ## Del 6: Bruk av .gitignore
 
@@ -250,7 +240,7 @@ git merge <branch-navn>         # Merge en branch inn i den nåværende branchen
 ```
 **Merk:** Dette er bare et utvalg av de mest brukte kommandoene. Git har mange flere funksjoner og kommandoer som kan være nyttige i forskjellige situasjoner.
 
-## Tips
+## Generelle tips
 
 - Pull før du begynner å jobbe (for å få andres endringer)
 - Test koden din før du pusher
@@ -263,21 +253,21 @@ Andre nyttige ressurser:
 - [Philomatics Youtube kanal](https://www.youtube.com/@philomatics)
 
 
-## Bonus: Arbeide med Git i terminalen
+## Vil også nevne: Arbeide med Git i terminalen
 Dersom du ønsker å bruke Git direkte i terminalen uten GitHub Desktop, er du nødt til å sette opp SSH-nøkler for autentisering med GitHub. Dette kan du gjøre ved å følge denne guiden:
 
 https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
 
-**Merk:** Dette kan være litt krevende å sette opp, personlig spør jeg som regel AI om hjelp til dette.
+**Merk:** Dette kan være litt krevende å sette opp, personlig spør jeg som regel AI om hjelp!
 
 Etter at du har satt opp SSH-nøkler, kan du bruke følgende kommandoer i terminalen
 ```bash
-git clone <repo-url>    # Klon et repo
+git clone <repo-url>    # Klon både offentlige og private repoer
 git push                # Push endringer til GitHub
 git pull                # Hent og slå sammen endringer fra GitHub
 ```
 
-## Bonus 2: Andre GUIs for Git
+## Vil også nevne 2: Andre GUIs for Git
 Ut over GitHub Desktop finnes det flere andre GUI-verktøy for Git som kan være nyttige. To populære alternativer er:
 
 ### LazyGit (min personlige favoritt)
