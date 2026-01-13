@@ -12,19 +12,11 @@ from area import circle_area
     [
         0.5,
         2.0,
-        1.0
     ],
 )
 def test_circle_area_simple(radius):
     """Area of circle should be pi * r^2."""
+    our_function = circle_area(radius)
     expected = np.pi * radius**2
 
-    # # What is an assert?
-    # assert 0 == 1 # False -> Code will fail
-    # assert 1 == 1 # True -> Code will pass
-
-    # Actual test
-    # assert circle_area(radius) == expected, f"circle_area failed for radius={radius}"
-    assert np.allclose(circle_area(radius), expected), (
-        f"circle_area failed for radius={radius}"
-    )
+    assert our_function == expected, f"circle_area failed for radius = {radius}" # Assert will raise an error if condition is False
