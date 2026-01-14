@@ -1,4 +1,4 @@
-# TMA4320: Git-øvelse før prosjekt
+# TMA4320: Git-øvelse
 
 Denne øvingen er ment som en intro til Git og GitHub. Du lærer grunnleggende kommandoer ved å gjøre enkle endringer i dette repoet.
 
