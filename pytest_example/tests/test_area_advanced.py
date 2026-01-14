@@ -3,7 +3,7 @@ import pytest
 from area import circle_area
 
 #############################################################################
-# En mer avansert og skalerbar test med bruk av fixtures
+# En mer avansert med bruk av fixtures. Lettere å teste flere kombinasjoner
 #############################################################################
 
 DTYPE = [
@@ -26,8 +26,7 @@ def dtype(request: pytest.FixtureRequest) -> str:
 def array_shape(request: pytest.FixtureRequest) -> tuple:
     return request.param
 
-
-def test_circle_area_advanded(
+def test_circle_area_advanced(
     dtype: str,
     array_shape: tuple,
 ):
