@@ -120,11 +120,11 @@ git merge update-students               # Merge inn endringene fra update-studen
 ```
 Du har nå laget en branch, gjort endringer, og merget dem tilbake til main. Bruk `git log` for å se commit-historikken. Deretter pusher du endringene til GitHub via GitHub Desktop på samme måte som tidligere.
 
-### Viktig: Merge-conflicts
+### Viktig: Merge-conflicts (gjøres etter forelesning)
 
 Merge conflicts oppstår når to branches endrer samme linje i en fil. Når vi skal merge disse branchene vil Git ikke vite hvilken endring som skal beholdes, og du må løse konflikten manuelt. Dette er en vanlig situasjon når flere personer jobber på samme prosjekt, og kan virke skremmende i starten. 
 
-Heldigvis er ikke dette så vanskelig som det ser ut som. Jeg anbefaler å bruke 5 minutter etter forelesning på å se denne videoen. Deretter kan du prøve å lage en merge-conflict self, og håndtere den slik som forklart. 
+Heldigvis er ikke dette så vanskelig som det ser ut som. Jeg anbefaler å bruke 5 minutter **etter forelesning** på å se denne videoen. Deretter kan du prøve å lage en merge-conflict self, og håndtere den slik som forklart. 
 
 https://www.youtube.com/watch?v=DloR0BOGNU0
 
